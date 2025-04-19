@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
+  <meta charset="UTF-8">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      
+    }
+    .welcome {
+        font-family: 'Comfortaa';
+        font-size: 30px;
+        padding-top: 10px;
+        color: white;
+        text-align: center;
+    }
+    .sub {
+        font-family: 'Comfortaa';
+        font-size: 20px;
+        color: rgba(255, 255, 255, 0.525);
+        text-align: center;
+    }
+    .home-image {
+        width: 40%;
+    }
+  </style>
+</head>
+<body>
+    <div>
+        <p class="welcome">
+            Welcome!
+        </p>
+        <p class="sub">
+            Learn 16 northern hemisphere autumn-winter constellations!
+            <br>
+            <img class="home-image" src="{{ url_for('static', filename='mainpage.png') }}" >
+        </p>
+    </div>
+    <br>
+</body>
+</html>
