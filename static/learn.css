@@ -1,0 +1,52 @@
+.learn {
+	background-color: rgb(192, 193, 194);
+	color: rgb(26, 26, 26);
+	font-size: 20px;
+	padding: 10px;
+	border: 2px solid lightblue;
+	text-align: center;
+}
+
+.learn img {
+	width: 100%;
+	height: 175px;
+	display: block;
+	object-fit: cover;
+}
+
+.reveal-btn {
+	background-color: lightblue;
+	color: rgb(26, 26, 26);
+	border: 1.5px solid rgb(26, 26, 26);
+	border-radius: 0;
+	cursor: pointer;
+	font-size: 16px;
+	padding: 8px 16px;
+}
+
+.nextpage-btn {
+	background-color: lightblue;
+	color: rgb(26, 26, 26);
+	border: 1.5px solid rgb(26, 26, 26);
+	border-radius: 0;
+	cursor: pointer;
+	font-size: 16px;
+	padding: 8px 16px;
+	font-weight: bold;
+	float: right;
+}
+
+.revealed {
+	height: 350px;
+	font-size: 14px;
+}
+
+.revealed .title {
+	font-weight: bold;
+	font-size: 18px;
+	margin-bottom: 0px;
+}
+
+.revealed .info {
+	color: rgb(100, 100, 100);
+}

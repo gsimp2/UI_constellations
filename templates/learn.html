@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{url_for('static', filename='learn.css')}}">
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'learn.js') }}"></script>
+
+<script>
+	let constellations = {{ constellations| tojson}}
+	let page = {{ page| tojson}}
+</script>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<p class="welcome">Learn the constellations!</p>
+	<p class="sub">Click on the cards to reveal each constellation</p>
+	<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+		{% for constellation in constellations %}
+		<div class="col text-center">
+			<div class="learn" id="flashcard-{{ loop.index0 }}">
+				<img src=" {{ url_for('static', filename=constellation['front-photo']) }}" class="img-fluid"
+					alt="{{ constellation['name'] }}">
+				<button class="btn btn-primary mt-2 reveal-btn" data-index="{{ loop.index0 }}">
+					Reveal
+				</button>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	<div id="nextpage"></div>
+</div>
+
+{% endblock %}
