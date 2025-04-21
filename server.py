@@ -23,6 +23,10 @@ def learn_page(page=None):
     learn_items = [constellations[name] for name in learn_pages[page]]
     return render_template('learn.html',  constellations = learn_items, page=page)
 
+@app.route('/quiz/hard')
+def quiz_challenge_page():
+    return render_template('quiz_hard.html', constellations=constellations)
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
