@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 from data import constellations
+import random
 
 app = Flask(__name__)
 learn1 = ["Cassiopeia", "Andromeda", "Aries", "Orion"]
@@ -48,6 +49,37 @@ def save_learn(page=None):
 @app.route('/quiz/hard')
 def quiz_challenge_page():
     return render_template('quiz_hard.html', constellations=constellations)
+
+@app.route('/quiz/easy')
+def quiz_easy_page():
+    names = list(constellations.keys())
+    random.shuffle(names)
+
+    shuffled_constellations = []
+    def newListRemove(element, list): return filter(lambda x: x != element, list)
+
+    for name in names:
+
+        _dict = {}
+        _dict["name"] = name
+        
+        list_15 = newListRemove(name, names)
+        options = random.sample(set(list_15), 3)
+        
+        options.append(name)
+        random.shuffle(options)
+
+        _dict["options"] = options
+
+        shuffled_constellations.append(_dict)
+
+    return render_template('quiz_easy.html', shuffled_constellations=shuffled_constellations)
+
+
+@app.route('/quiz/finish')
+def quiz_finish_page():
+    
+    return render_template('quiz_finish.html')
 
 
 if __name__ == '__main__':

@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{url_for('static', filename='homepage.css')}}">
+<script>
+  $(document).ready(function () {
+    $('#learn').click(function () {
+      window.location.href = '/learn/1';
+    });
+    $('#easy').click(function () {
+      window.location.href = '/quiz/easy';
+    })
+    $('#hard').click(function () {
+      window.location.href = '/quiz/hard';
+    })
+  });
+</script>
+<style>
+#learn {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, 100%);
+	background-color: lightblue;
+}
+
+#easy {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, 250%);
+	background-color: rgb(192, 193, 194);
+}
+
+#hard {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, 400%);
+	background-color: rgb(192, 193, 194);
+}
+
+.btn {
+
+    position: absolute;
+    color: black;
+	font-size: 20px;
+	padding: 10px 20px;
+	border: 2px solid black;
+	cursor: auto;
+	border-radius: 0px;
+
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+  <div class="container">
+    <p class="welcome">
+      Great job!
+    </p>
+    <button class="btn learn" type="button" id="easy">Review and retake quiz</button>
+    <button class="btn quiz" type="button" id="learn">Continue learning</button>
+    <button class="btn quiz" type="button" id="hard">Challenge yourself</button>
+  </div>
+  <br>
+</div>
+
+{% endblock %}
