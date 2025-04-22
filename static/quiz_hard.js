@@ -76,10 +76,10 @@ function checkAnswer() {
 function nextQuestion() {
   currentIndex++;
 
-  const end = 2;
-  if (currentIndex >= end) {
-    showResults();
-  }
+  // const end = 2;
+  // if (currentIndex >= end) {
+  //   showResults();
+  // }
 
   if (currentIndex >= constellationList.length) {
     showResults();
