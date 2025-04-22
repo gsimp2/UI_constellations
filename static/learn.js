@@ -35,7 +35,12 @@ function save_learn_metadata() {
 		data: JSON.stringify(data_to_save),
 		success: function (result) {
 			console.log(result)
-			window.location.href = '/learn/' + (parseInt(page) + 1).toString();
+			if (page != "4") {
+				window.location.href = '/learn/' + (parseInt(page) + 1).toString();
+			}
+			else {
+				window.location.href = '/quiz/easy';
+			}
 		},
 		error: function (request, status, error) {
 			console.log("Error");
@@ -58,9 +63,13 @@ $(document).ready(function () {
 		flip_card(constellation, index)
 
 		if (buttons_clicked == 4) {
+			let btnname = "Next"
+			if (page == "4") {
+				btnname = "Take Quiz"
+			}
 			let newBtn = `
 		<button class="btn btn-primary mt-2 nextpage-btn" id="nextbtn">
-					Next
+				${btnname}
 				</button>`;
 			$('#nextpage').append(newBtn);
 		}
