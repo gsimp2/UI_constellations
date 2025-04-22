@@ -6,7 +6,8 @@ constellations = {
 		"visibility": "November",
 		"feature": "'W' shape",
 		"front-photo": "learnphotos/cassiopeia1.jpeg",
-		"back-photo": "learnphotos/cassiopeia.jpeg"
+		"back-photo": "learnphotos/cassiopeia.jpeg",
+		"challenge-photo":"learnphotos/cassiopeia2.webp"
     },
 	"Andromeda": {
         "id": 2,
@@ -15,7 +16,8 @@ constellations = {
 		"visibility": "November",
 		"feature": "'arms' and 'legs''",
 		"front-photo": "learnphotos/andromeda1.png",
-		"back-photo": "learnphotos/andromeda.jpeg"
+		"back-photo": "learnphotos/andromeda.jpeg",
+		"challenge-photo":"learnphotos/andromeda2.webp"
     },
 	"Aries": {
         "id": 3,
@@ -24,7 +26,8 @@ constellations = {
 		"visibility": "December",
 		"feature": "4 stars in a line",
 		"front-photo": "learnphotos/aries1.png",
-		"back-photo": "learnphotos/aries.jpeg"
+		"back-photo": "learnphotos/aries.jpeg",
+		"challenge-photo":"learnphotos/aries2.webp"
     },
 	"Orion": {
         "id": 4,
@@ -33,7 +36,8 @@ constellations = {
 		"visibility": "January",
 		"feature": "Orion's belt (3 stars in a line)",
 		"front-photo": "learnphotos/orion1.jpg",
-		"back-photo": "learnphotos/orion.jpeg"
+		"back-photo": "learnphotos/orion.jpeg",
+		"challenge-photo":"learnphotos/orion2.webp"
     },
 	"Perseus": {
         "id": 5,
@@ -42,7 +46,8 @@ constellations = {
 		"visibility": "December",
 		"feature": "Squarish 'body' and triangular 'head'",
 		"front-photo": "learnphotos/perseus1.png",
-		"back-photo": "learnphotos/perseus.jpeg"
+		"back-photo": "learnphotos/perseus.jpeg",
+		"challenge-photo":"learnphotos/perseus2.webp"
 	},
 	"Pisces": {
         "id": 6,
@@ -51,7 +56,8 @@ constellations = {
 		"visibility": "November",
 		"feature": "Two 'fish'",
 		"front-photo": "learnphotos/pisces1.jpg",
-		"back-photo": "learnphotos/pisces.jpeg"
+		"back-photo": "learnphotos/pisces.jpeg",
+		"challenge-photo":"learnphotos/pisces2.webp"
     },
 	"Taurus": {
         "id": 7,
@@ -60,7 +66,8 @@ constellations = {
 		"visibility": "January",
 		"feature": "Two long 'horns'",
 		"front-photo": "learnphotos/taurus1.jpg",
-		"back-photo": "learnphotos/taurus.jpeg"
+		"back-photo": "learnphotos/taurus.jpeg",
+		"challenge-photo":"learnphotos/taurus2.webp"
     },
 	"Triangulum": {
         "id": 8,
@@ -69,7 +76,8 @@ constellations = {
 		"visibility": "December",
 		"feature": "Triangle",
 		"front-photo": "learnphotos/triangulum1.png",
-		"back-photo": "learnphotos/triangulum.jpeg"
+		"back-photo": "learnphotos/triangulum.jpeg",
+		"challenge-photo":"learnphotos/triangulum2.webp"
     },
 	"Auriga": {
         "id": 9,
@@ -78,7 +86,8 @@ constellations = {
 		"visibility": "February",
 		"feature": "Misshapen hexagon",
 		"front-photo": "learnphotos/auriga1.jpg",
-		"back-photo": "learnphotos/auriga.jpeg"
+		"back-photo": "learnphotos/auriga.jpeg",
+		"challenge-photo":"learnphotos/auriga2.webp"
     },
 	"Cancer": {
         "id": 10,
@@ -87,7 +96,8 @@ constellations = {
 		"visibility": "March",
 		"feature": "-< shape",
 		"front-photo": "learnphotos/cancer1.jpg",
-		"back-photo": "learnphotos/cancer.jpeg"
+		"back-photo": "learnphotos/cancer.jpeg",
+		"challenge-photo":"learnphotos/cancer2.webp"
     },
 	"Canis Minor": {
         "id": 11,
@@ -96,7 +106,8 @@ constellations = {
 		"visibility": "March",
 		"feature": "2 stars in a line",
 		"front-photo": "learnphotos/canisminor1.jpg",
-		"back-photo": "learnphotos/canisminor.jpeg"
+		"back-photo": "learnphotos/canisminor.jpeg",
+		"challenge-photo":"learnphotos/canisminor2.webp"
     },
 	"Lacerta": {
         "id": 12,
@@ -105,7 +116,8 @@ constellations = {
 		"visibility": "October",
 		"feature": "Long www",
 		"front-photo": "learnphotos/lacerta1.jpg",
-		"back-photo": "learnphotos/lacerta.jpeg"
+		"back-photo": "learnphotos/lacerta.jpeg",
+		"challenge-photo":"learnphotos/lacerta2.webp"
     },
 	"Cepheus": {
         "id": 13,
@@ -114,7 +126,8 @@ constellations = {
 		"visibility": "November",
 		"feature": "House shape",
 		"front-photo": "learnphotos/cepheus1.png",
-		"back-photo": "learnphotos/cepheus.jpeg"
+		"back-photo": "learnphotos/cepheus.jpeg",
+		"challenge-photo":"learnphotos/cepheus2.webp"
     },
 	"Aquila": {
         "id": 14,
@@ -123,7 +136,8 @@ constellations = {
 		"visibility": "August",
 		"feature": "Bird shape",
 		"front-photo": "learnphotos/aquila1.jpg",
-		"back-photo": "learnphotos/aquila.jpeg"
+		"back-photo": "learnphotos/aquila.jpeg",
+		"challenge-photo":"learnphotos/aquila2.webp"
     },
 	"Cygnus": {
         "id": 15,
@@ -132,7 +146,8 @@ constellations = {
 		"visibility": "September",
 		"feature": "t-shape",
 		"front-photo": "learnphotos/cygnus1.jpg",
-		"back-photo": "learnphotos/cygnus.jpeg"
+		"back-photo": "learnphotos/cygnus.jpeg",
+		"challenge-photo":"learnphotos/cygnus2.webp"
     },
 	"Delphinus": {
         "id": 16,
@@ -141,6 +156,7 @@ constellations = {
 		"visibility": "September",
 		"feature": "Prism + tail",
 		"front-photo": "learnphotos/delphinus1.png",
-		"back-photo": "learnphotos/delphinus.jpeg"
+		"back-photo": "learnphotos/delphinus.jpeg",
+		"challenge-photo":"learnphotos/delphinus2.webp"
     },
 }
