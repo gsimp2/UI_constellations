@@ -1,3 +1,4 @@
+# learn-time in microseconds
 constellations = {
     "Cassiopeia": {
         "id": 1,
@@ -7,7 +8,8 @@ constellations = {
 		"feature": "'W' shape",
 		"front-photo": "learnphotos/cassiopeia1.jpeg",
 		"back-photo": "learnphotos/cassiopeia.jpeg",
-		"challenge-photo":"learnphotos/cassiopeia2.webp"
+		"challenge-photo":"learnphotos/cassiopeia2.webp",
+		"learn-time": 0
     },
 	"Andromeda": {
         "id": 2,
@@ -17,7 +19,8 @@ constellations = {
 		"feature": "'arms' and 'legs''",
 		"front-photo": "learnphotos/andromeda1.png",
 		"back-photo": "learnphotos/andromeda.jpeg",
-		"challenge-photo":"learnphotos/andromeda2.webp"
+		"challenge-photo":"learnphotos/andromeda2.webp",
+		"learn-time": 0
     },
 	"Aries": {
         "id": 3,
@@ -27,7 +30,8 @@ constellations = {
 		"feature": "4 stars in a line",
 		"front-photo": "learnphotos/aries1.png",
 		"back-photo": "learnphotos/aries.jpeg",
-		"challenge-photo":"learnphotos/aries2.webp"
+		"challenge-photo":"learnphotos/aries2.webp",
+		"learn-time": 0
     },
 	"Orion": {
         "id": 4,
@@ -37,7 +41,8 @@ constellations = {
 		"feature": "Orion's belt (3 stars in a line)",
 		"front-photo": "learnphotos/orion1.jpg",
 		"back-photo": "learnphotos/orion.jpeg",
-		"challenge-photo":"learnphotos/orion2.webp"
+		"challenge-photo":"learnphotos/orion2.webp",
+		"learn-time": 0
     },
 	"Perseus": {
         "id": 5,
@@ -47,7 +52,8 @@ constellations = {
 		"feature": "Squarish 'body' and triangular 'head'",
 		"front-photo": "learnphotos/perseus1.png",
 		"back-photo": "learnphotos/perseus.jpeg",
-		"challenge-photo":"learnphotos/perseus2.webp"
+		"challenge-photo":"learnphotos/perseus2.webp",
+		"learn-time": 0
 	},
 	"Pisces": {
         "id": 6,
@@ -57,7 +63,8 @@ constellations = {
 		"feature": "Two 'fish'",
 		"front-photo": "learnphotos/pisces1.jpg",
 		"back-photo": "learnphotos/pisces.jpeg",
-		"challenge-photo":"learnphotos/pisces2.webp"
+		"challenge-photo":"learnphotos/pisces2.webp",
+		"learn-time": 0
     },
 	"Taurus": {
         "id": 7,
@@ -67,7 +74,8 @@ constellations = {
 		"feature": "Two long 'horns'",
 		"front-photo": "learnphotos/taurus1.jpg",
 		"back-photo": "learnphotos/taurus.jpeg",
-		"challenge-photo":"learnphotos/taurus2.webp"
+		"challenge-photo":"learnphotos/taurus2.webp",
+		"learn-time": 0
     },
 	"Triangulum": {
         "id": 8,
@@ -77,7 +85,8 @@ constellations = {
 		"feature": "Triangle",
 		"front-photo": "learnphotos/triangulum1.png",
 		"back-photo": "learnphotos/triangulum.jpeg",
-		"challenge-photo":"learnphotos/triangulum2.webp"
+		"challenge-photo":"learnphotos/triangulum2.webp",
+		"learn-time": 0
     },
 	"Auriga": {
         "id": 9,
@@ -87,7 +96,8 @@ constellations = {
 		"feature": "Misshapen hexagon",
 		"front-photo": "learnphotos/auriga1.jpg",
 		"back-photo": "learnphotos/auriga.jpeg",
-		"challenge-photo":"learnphotos/auriga2.webp"
+		"challenge-photo":"learnphotos/auriga2.webp",
+		"learn-time": 0
     },
 	"Cancer": {
         "id": 10,
@@ -97,7 +107,8 @@ constellations = {
 		"feature": "-< shape",
 		"front-photo": "learnphotos/cancer1.jpg",
 		"back-photo": "learnphotos/cancer.jpeg",
-		"challenge-photo":"learnphotos/cancer2.webp"
+		"challenge-photo":"learnphotos/cancer2.webp",
+		"learn-time": 0
     },
 	"Canis Minor": {
         "id": 11,
@@ -107,7 +118,8 @@ constellations = {
 		"feature": "2 stars in a line",
 		"front-photo": "learnphotos/canisminor1.jpg",
 		"back-photo": "learnphotos/canisminor.jpeg",
-		"challenge-photo":"learnphotos/canisminor2.webp"
+		"challenge-photo":"learnphotos/canisminor2.webp",
+		"learn-time": 0
     },
 	"Lacerta": {
         "id": 12,
@@ -117,7 +129,8 @@ constellations = {
 		"feature": "Long www",
 		"front-photo": "learnphotos/lacerta1.jpg",
 		"back-photo": "learnphotos/lacerta.jpeg",
-		"challenge-photo":"learnphotos/lacerta2.webp"
+		"challenge-photo":"learnphotos/lacerta2.webp",
+		"learn-time": 0
     },
 	"Cepheus": {
         "id": 13,
@@ -127,7 +140,8 @@ constellations = {
 		"feature": "House shape",
 		"front-photo": "learnphotos/cepheus1.png",
 		"back-photo": "learnphotos/cepheus.jpeg",
-		"challenge-photo":"learnphotos/cepheus2.webp"
+		"challenge-photo":"learnphotos/cepheus2.webp",
+		"learn-time": 0
     },
 	"Aquila": {
         "id": 14,
@@ -137,7 +151,8 @@ constellations = {
 		"feature": "Bird shape",
 		"front-photo": "learnphotos/aquila1.jpg",
 		"back-photo": "learnphotos/aquila.jpeg",
-		"challenge-photo":"learnphotos/aquila2.webp"
+		"challenge-photo":"learnphotos/aquila2.webp",
+		"learn-time": 0
     },
 	"Cygnus": {
         "id": 15,
@@ -147,7 +162,8 @@ constellations = {
 		"feature": "t-shape",
 		"front-photo": "learnphotos/cygnus1.jpg",
 		"back-photo": "learnphotos/cygnus.jpeg",
-		"challenge-photo":"learnphotos/cygnus2.webp"
+		"challenge-photo":"learnphotos/cygnus2.webp",
+		"learn-time": 0
     },
 	"Delphinus": {
         "id": 16,
@@ -157,6 +173,7 @@ constellations = {
 		"feature": "Prism + tail",
 		"front-photo": "learnphotos/delphinus1.png",
 		"back-photo": "learnphotos/delphinus.jpeg",
-		"challenge-photo":"learnphotos/delphinus2.webp"
+		"challenge-photo":"learnphotos/delphinus2.webp",
+		"learn-time": 0
     },
 }
