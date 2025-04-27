@@ -22,18 +22,15 @@ $(document).ready(function () {
 
     $("#score").text(`Score: ${score}/${currentIndex}`);
 
-    constellation = constellations[currentIndex]
-    console.log(constellation)
-
     let nextButton = $("#next-btn");
     let optionButtons = $(".option");
 
-    displayQuestion(constellation);
+    displayQuestion();
     updateProgressBar();
 
     optionButtons.on("click", function () {
 
-        checkAnswer(this, constellation);
+        checkAnswer(this);
 
     });
 
@@ -49,7 +46,7 @@ $(document).ready(function () {
             nextButton.prop("disabled", true);
 
             constellation = constellations[currentIndex];
-            displayQuestion(constellation);
+            displayQuestion();
 
         } else if (currentIndex == constellations.length - 1) {
 
@@ -57,7 +54,7 @@ $(document).ready(function () {
             nextButton.prop("disabled", true);
 
             constellation = constellations[currentIndex];
-            displayQuestion(constellation);
+            displayQuestion();
 
         } else {
 
@@ -82,8 +79,9 @@ function saveProgress() {
 
 }
 
-function displayQuestion(constellation) {
+function displayQuestion() {
 
+    constellation = constellations[currentIndex]
     constellationOptions = constellation["options"];
     constellationName = constellation["name"];
 
@@ -106,7 +104,9 @@ function displayQuestion(constellation) {
       
 }
 
-function checkAnswer(selectedOption, constellation) {
+function checkAnswer(selectedOption) {
+
+    constellation = constellations[currentIndex];
 
     disableOptions();
     next = $("#next-btn");
@@ -126,6 +126,12 @@ function checkAnswer(selectedOption, constellation) {
         $("#feedback-text").html(
           `<span class="incorrect">Incorrect! The correct answer is: ${constellation.name}</span>`
         );
+
+    }
+
+    if (currentIndex < constellations.length - 1) {
+
+        localStorage.removeItem('quizState');
 
     }
 

@@ -1,13 +1,20 @@
+#progress-container {
+    display: flex;
+    gap: 5px; 
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
 .progress-rect {
     flex: 1;
-    height: 20px;
+    height: 10px;
     background-color: #eee;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     transition: background-color 0.3s;
 }
 
 .progress-rect.filled {
-    background-color: #4CAF50;
+    background-color: #4c7daf;
 }
 
   body {
