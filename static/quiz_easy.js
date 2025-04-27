@@ -2,8 +2,25 @@ let constellations = shuffledConstellations;
 let currentIndex = 0;
 let score = 0;
 
-
 $(document).ready(function () {
+
+    if (localStorage.getItem('quizState')) {
+
+        let savedState = JSON.parse(localStorage.getItem('quizState'));
+        constellations = savedState.constellations;
+        currentIndex = savedState.currentIndex;
+        score = savedState.score;
+
+    } else {
+
+        constellations = shuffledConstellations;
+        currentIndex = 0;
+        score = 0;
+        saveProgress();
+
+    }
+
+    $("#score").text(`Score: ${score}/${currentIndex}`);
 
     constellation = constellations[currentIndex]
     console.log(constellation)
@@ -12,6 +29,7 @@ $(document).ready(function () {
     let optionButtons = $(".option");
 
     displayQuestion(constellation);
+    updateProgressBar();
 
     optionButtons.on("click", function () {
 
@@ -43,6 +61,7 @@ $(document).ready(function () {
 
         } else {
 
+            localStorage.removeItem('quizState');
             window.location.href = "/quiz/finish";
 
         }
@@ -51,6 +70,17 @@ $(document).ready(function () {
 
 });
 
+function saveProgress() {
+
+    localStorage.setItem('quizState', JSON.stringify({
+
+        constellations: constellations,
+        currentIndex: currentIndex,
+        score: score
+
+    }));
+
+}
 
 function displayQuestion(constellation) {
 
@@ -99,8 +129,10 @@ function checkAnswer(selectedOption, constellation) {
 
     }
 
-    let scoreCard = $("#score");
-    scoreCard.text(`${score}/${currentIndex}`);
+    saveProgress();
+
+    updateProgressBar();
+    $("#score").text(`Score: ${score}/${currentIndex}`);
 
 }
 
@@ -128,4 +160,15 @@ function enableOptions() {
 
     }
 
+}
+
+function updateProgressBar() {
+    let totalSteps = constellations.length;
+    let rects = $(".progress-rect");
+
+    rects.removeClass("filled");  // clear all
+
+    for (let i = 0; i < currentIndex; i++) {
+        $(rects[i]).addClass("filled");  // fill up to currentIndex
+    }
 }

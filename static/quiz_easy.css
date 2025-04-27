@@ -1,0 +1,64 @@
+.progress-rect {
+    flex: 1;
+    height: 20px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    transition: background-color 0.3s;
+}
+
+.progress-rect.filled {
+    background-color: #4CAF50;
+}
+
+  body {
+    color: #ffffff;
+}
+
+#quiz-container {
+    padding: 20px;
+}
+
+#image-container img {
+    max-height: 400px;
+    border: 1px solid #ffffff;
+}
+
+#answer-input {
+    padding: 10px;
+}
+
+.correct {
+    color: green;
+    font-size: 24px;
+}
+
+.incorrect {
+    color: red;
+    font-size: 24px;
+}
+
+.learn {
+	background-color: lightblue;
+	transition: rgb(145, 179, 190) 0.3s ease, color 0.3s ease;
+	color: black;
+	font-size: 20px;
+	padding: 10px 20px;
+	border: 2px solid black;
+	cursor: auto;
+	border-radius: 0px;
+}
+
+.score {
+    color: lightblue;
+}
+
+#retake-btn, #main-menu-btn {
+  font-size: 16px;
+  padding: 15px;
+  width: 100%;
+}
+
+#main-menu-btn {
+  background-color: #d3d3d3;
+  color: black;
+}
