@@ -1,6 +1,4 @@
-let constellations = shuffledConstellations;
-let currentIndex = 0;
-let score = 0;
+let constellations;
 
 $(document).ready(function () {
 
@@ -10,6 +8,12 @@ $(document).ready(function () {
         constellations = savedState.constellations;
         currentIndex = savedState.currentIndex;
         score = savedState.score;
+
+        if (currentIndex >= 16) {
+
+            sendScoreAndFinish()
+
+        }
 
     } else {
 
@@ -58,8 +62,7 @@ $(document).ready(function () {
 
         } else {
 
-            localStorage.removeItem('quizState');
-            window.location.href = "/quiz/finish";
+            sendScoreAndFinish()
 
         }
 
@@ -129,12 +132,6 @@ function checkAnswer(selectedOption) {
 
     }
 
-    if (currentIndex < constellations.length - 1) {
-
-        localStorage.removeItem('quizState');
-
-    }
-
     saveProgress();
 
     updateProgressBar();
@@ -169,12 +166,39 @@ function enableOptions() {
 }
 
 function updateProgressBar() {
-    let totalSteps = constellations.length;
+
     let rects = $(".progress-rect");
 
-    rects.removeClass("filled");  // clear all
+    rects.removeClass("filled");
 
     for (let i = 0; i < currentIndex; i++) {
-        $(rects[i]).addClass("filled");  // fill up to currentIndex
+
+        $(rects[i]).addClass("filled");
+
     }
+
 }
+
+function sendScoreAndFinish() {
+    fetch('/quiz/submit-score', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            score: score,
+        })
+    })
+    .then(response => {
+        if (response.ok) {
+            localStorage.removeItem('quizState');
+            window.location.href = '/quiz/finish'; // 👈 Redirect to the finish page
+        } else {
+            console.error('Failed to send score.');
+        }
+    })
+    .catch(error => {
+        console.error('Error sending score:', error);
+    });
+}
+

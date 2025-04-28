@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, redirect, url_for
+from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 from data import constellations
 import random
 
@@ -7,6 +7,8 @@ learn1 = ["Cassiopeia", "Andromeda", "Aries", "Orion"]
 learn2 = ["Perseus", "Pisces", "Taurus", "Triangulum"]
 learn3 = ["Auriga", "Cancer", "Canis Minor", "Lacerta"]
 learn4 = ["Cepheus", "Aquila", "Cygnus", "Delphinus"]
+
+app.secret_key = '1234'
 
 learn_pages = {
     "1": learn1,
@@ -76,10 +78,27 @@ def quiz_easy_page():
     return render_template('quiz_easy.html', shuffled_constellations=shuffled_constellations)
 
 
+@app.route('/quiz/submit-score', methods=['POST'])
+def submit_score():
+    data = request.get_json()
+    score = data['score']
+
+    # Save the score temporarily into the Flask session
+    session['score'] = score
+
+    # Redirect to finish page
+    return redirect(url_for('quiz_finish_page'))
+
 @app.route('/quiz/finish')
 def quiz_finish_page():
-    
-    return render_template('quiz_finish.html')
+    score = session.get('score')
+    print(score)
+
+    if score is None:
+        # If somehow accessed /quiz/finish without a score
+        return redirect(url_for('quiz_easy_page'))
+
+    return render_template('quiz_finish.html', score=score)
 
 
 if __name__ == '__main__':
