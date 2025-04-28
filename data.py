@@ -9,7 +9,8 @@ constellations = {
 		"front-photo": "learnphotos/cassiopeia1.jpeg",
 		"back-photo": "learnphotos/cassiopeia.jpeg",
 		"challenge-photo":"learnphotos/cassiopeia2.webp",
-		"learn-time": 0
+		"learn-time": 0,
+        "message": "Cassiopeia, or 'the queen,' looks like the top of a spiked crown."
     },
 	"Andromeda": {
         "id": 2,
@@ -20,7 +21,8 @@ constellations = {
 		"front-photo": "learnphotos/andromeda1.png",
 		"back-photo": "learnphotos/andromeda.jpeg",
 		"challenge-photo":"learnphotos/andromeda2.webp",
-		"learn-time": 0
+		"learn-time": 0,
+        "message": "Andromeda, or 'the chained maiden,' looks like a flowing figure in the sky."
     },
 	"Aries": {
         "id": 3,
@@ -31,7 +33,8 @@ constellations = {
 		"front-photo": "learnphotos/aries1.png",
 		"back-photo": "learnphotos/aries.jpeg",
 		"challenge-photo":"learnphotos/aries2.webp",
-		"learn-time": 0
+		"learn-time": 0,
+        "message": "Aries, or 'the ram,' looks like a curving horn."
     },
 	"Orion": {
         "id": 4,
@@ -42,7 +45,8 @@ constellations = {
 		"front-photo": "learnphotos/orion1.jpg",
 		"back-photo": "learnphotos/orion.jpeg",
 		"challenge-photo":"learnphotos/orion2.webp",
-		"learn-time": 0
+		"learn-time": 0,
+        "message": "Orion, or 'the hunter,' looks like a mighty warrior with a belt of three stars."
     },
 	"Perseus": {
         "id": 5,
@@ -53,7 +57,8 @@ constellations = {
 		"front-photo": "learnphotos/perseus1.png",
 		"back-photo": "learnphotos/perseus.jpeg",
 		"challenge-photo":"learnphotos/perseus2.webp",
-		"learn-time": 0
+		"learn-time": 0,
+        "message": "Perseus, or 'the hero,' looks like a figure holding a sword."
 	},
 	"Pisces": {
         "id": 6,
@@ -64,7 +69,8 @@ constellations = {
 		"front-photo": "learnphotos/pisces1.jpg",
 		"back-photo": "learnphotos/pisces.jpeg",
 		"challenge-photo":"learnphotos/pisces2.webp",
-		"learn-time": 0
+		"learn-time": 0,
+        "message": "Pisces, or 'the fish,' looks like two fish tied together by a string."
     },
 	"Taurus": {
         "id": 7,
@@ -75,7 +81,8 @@ constellations = {
 		"front-photo": "learnphotos/taurus1.jpg",
 		"back-photo": "learnphotos/taurus.jpeg",
 		"challenge-photo":"learnphotos/taurus2.webp",
-		"learn-time": 0
+		"learn-time": 0,
+        "message": "Taurus, or 'the bull,' looks like a V-shaped cluster of stars."
     },
 	"Triangulum": {
         "id": 8,
@@ -86,7 +93,8 @@ constellations = {
 		"front-photo": "learnphotos/triangulum1.png",
 		"back-photo": "learnphotos/triangulum.jpeg",
 		"challenge-photo":"learnphotos/triangulum2.webp",
-		"learn-time": 0
+		"learn-time": 0,
+        "message": "Triangulum, or 'the triangle,' looks like a small triangular pattern."
     },
 	"Auriga": {
         "id": 9,
@@ -97,7 +105,8 @@ constellations = {
 		"front-photo": "learnphotos/auriga1.jpg",
 		"back-photo": "learnphotos/auriga.jpeg",
 		"challenge-photo":"learnphotos/auriga2.webp",
-		"learn-time": 0
+		"learn-time": 0,
+        "message": "Auriga, or 'the charioteer,' looks like a pentagon."
     },
 	"Cancer": {
         "id": 10,
@@ -108,7 +117,8 @@ constellations = {
 		"front-photo": "learnphotos/cancer1.jpg",
 		"back-photo": "learnphotos/cancer.jpeg",
 		"challenge-photo":"learnphotos/cancer2.webp",
-		"learn-time": 0
+		"learn-time": 0,
+        "message": "Cancer, or 'the crab,' looks like a faint Y-shaped grouping."
     },
 	"Canis Minor": {
         "id": 11,
@@ -119,7 +129,8 @@ constellations = {
 		"front-photo": "learnphotos/canisminor1.jpg",
 		"back-photo": "learnphotos/canisminor.jpeg",
 		"challenge-photo":"learnphotos/canisminor2.webp",
-		"learn-time": 0
+		"learn-time": 0,
+        "message": "Canis Minor, or 'the little dog,' looks like a small, bright pair of stars."
     },
 	"Lacerta": {
         "id": 12,
@@ -130,7 +141,8 @@ constellations = {
 		"front-photo": "learnphotos/lacerta1.jpg",
 		"back-photo": "learnphotos/lacerta.jpeg",
 		"challenge-photo":"learnphotos/lacerta2.webp",
-		"learn-time": 0
+		"learn-time": 0,
+        "message": "Lacerta, or 'the lizard,' looks like a zigzagging line of stars."
     },
 	"Cepheus": {
         "id": 13,
@@ -141,7 +153,8 @@ constellations = {
 		"front-photo": "learnphotos/cepheus1.png",
 		"back-photo": "learnphotos/cepheus.jpeg",
 		"challenge-photo":"learnphotos/cepheus2.webp",
-		"learn-time": 0
+		"learn-time": 0,
+        "message": "Cepheus, or 'the king,' looks like a house-shaped figure."
     },
 	"Aquila": {
         "id": 14,
@@ -152,7 +165,8 @@ constellations = {
 		"front-photo": "learnphotos/aquila1.jpg",
 		"back-photo": "learnphotos/aquila.jpeg",
 		"challenge-photo":"learnphotos/aquila2.webp",
-		"learn-time": 0
+		"learn-time": 0,
+        "message": "Aquila, or 'the eagle,' looks like a bird."
     },
 	"Cygnus": {
         "id": 15,
@@ -163,7 +177,8 @@ constellations = {
 		"front-photo": "learnphotos/cygnus1.jpg",
 		"back-photo": "learnphotos/cygnus.jpeg",
 		"challenge-photo":"learnphotos/cygnus2.webp",
-		"learn-time": 0
+		"learn-time": 0,
+        "message": "Cygnus, or 'the swan,' looks like a flying cross-shaped bird."
     },
 	"Delphinus": {
         "id": 16,
@@ -174,6 +189,7 @@ constellations = {
 		"front-photo": "learnphotos/delphinus1.png",
 		"back-photo": "learnphotos/delphinus.jpeg",
 		"challenge-photo":"learnphotos/delphinus2.webp",
-		"learn-time": 0
+		"learn-time": 0,
+        "message": "Delphinus, or 'the dolphin,' looks like a small diamond or kite shape."
     },
 }

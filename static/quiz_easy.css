@@ -9,7 +9,6 @@
     flex: 1;
     height: 10px;
     background-color: #eee;
-    /* border: 1px solid #ccc; */
     transition: background-color 0.3s;
 }
 
@@ -25,9 +24,17 @@
     padding: 20px;
 }
 
+.image-container {
+    display: flex;
+    max-height: 250px;
+    justify-content: center;
+  }
+
 #image-container img {
-    max-height: 400px;
+    width: auto;
     border: 1px solid #ffffff;
+    height: 250px;
+    object-fit: cover;
 }
 
 #answer-input {

@@ -72,6 +72,7 @@ def quiz_easy_page():
         random.shuffle(options)
 
         _dict["options"] = options
+        _dict["message"] = constellations[name]["message"]
 
         shuffled_constellations.append(_dict)
 

@@ -24,8 +24,6 @@ $(document).ready(function () {
 
     }
 
-    $("#score").text(`Score: ${score}/${currentIndex}`);
-
     let nextButton = $("#next-btn");
     let optionButtons = $(".option");
 
@@ -110,10 +108,19 @@ function displayQuestion() {
 function checkAnswer(selectedOption) {
 
     constellation = constellations[currentIndex];
+    constellationName = constellation["name"];
 
     disableOptions();
     next = $("#next-btn");
     next.prop("disabled", false);
+
+    imageURLLeft = "/static/learnphotos/" + constellationName.replace(/\s/g, '') + "2.webp"
+    imageURLRight = "/static/learnphotos/" + constellationName.replace(/\s/g, '') + ".jpeg"
+
+    const image = $("#image-container");
+    image.html(
+        `<img src="${imageURLRight}" alt="${constellationName}"><img src="${imageURLLeft}" alt="${constellationName}">`
+    );
 
     let selectedText = $(selectedOption).text();
     $("#next-btn").prop("disabled", false);
@@ -122,19 +129,18 @@ function checkAnswer(selectedOption) {
     if (selectedText === constellation["name"]) {
 
         score = score + 1;
-        $("#feedback-text").text("Correct!").css("color", "green");
+        $("#feedback-text").text("Correct! " + constellation["message"]).attr("class", "correct");
 
     } else {
 
-        $("#feedback-text").html(
-          `<span class="incorrect">Incorrect! The correct answer is: ${constellation.name}</span>`
-        );
+        $("#feedback-text").text("Incorrect! The correct answer is " + constellationName + ". " + constellation["message"]).attr("class", "incorrect");
 
     }
 
     saveProgress();
 
     updateProgressBar();
+
     $("#score").text(`Score: ${score}/${currentIndex}`);
 
 }
