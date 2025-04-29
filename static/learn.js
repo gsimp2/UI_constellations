@@ -39,7 +39,7 @@ function save_learn_metadata() {
 				window.location.href = '/learn/' + (parseInt(page) + 1).toString();
 			}
 			else {
-				window.location.href = '/quiz/easy';
+				window.location.href = '/quiz/start';
 			}
 		},
 		error: function (request, status, error) {
@@ -65,7 +65,7 @@ $(document).ready(function () {
 		if (buttons_clicked == 4) {
 			let btnname = "Next"
 			if (page == "4") {
-				btnname = "Take Quiz"
+				btnname = "Finish"
 			}
 			let newBtn = `
 		<button class="btn btn-primary mt-2 nextpage-btn" id="nextbtn">

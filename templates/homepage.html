@@ -3,14 +3,25 @@
 {% block extra_head %}
 <link rel="stylesheet" href="{{url_for('static', filename='homepage.css')}}">
 <script>
+  let finished = {{ finished| tojson  }}
   $(document).ready(function () {
+    console.log(finished)
+    if (finished == "1") {
+      console.log("switching classes")
+      $('#learnbtn').removeClass("learn")
+      $('#learnbtn').addClass("quiz")
+      $('#quizbtn').removeClass("quiz")
+      $('#quizbtn').addClass("learn")
+    }
     $('#learnbtn').click(function () {
       window.location.href = '/learn/1';
     });
     $('#quizbtn').click(function () {
-      window.location.href = '/quiz/easy';
+      if (finished == "1") {
+        window.location.href = '/quiz/easy';
+      }
     })
-  });
+  })
 </script>
 {% endblock %}
 
@@ -25,8 +36,8 @@
       <br>
     </p>
     <img class="home-image" src="{{ url_for('static', filename='mainpage.png') }}">
-    <button class="btn learn" type="button" id="learnbtn">Learn the constellations</button>
-    <button class="btn quiz" type="button" id="quizbtn">Test your knowledge</button>
+    <button class="btn learn topposition" type="button" id="learnbtn">Learn the constellations</button>
+    <button class="btn quiz bottomposition" type="button" id="quizbtn">Test your knowledge</button>
   </div>
   <br>
 </div>

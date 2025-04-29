@@ -48,6 +48,28 @@
 			text-align: center;
 		}
 	</style>
+	<script>
+		$.ajax({
+			type: "POST",
+			url: "/disable_quiz/",
+			dataType: "json",
+			contentType: "application/json; charset=utf-8",
+			data: "",
+			success: function (finished) {
+				console.log(finished)
+				if (finished == "1") {
+					console.log("undisabling")
+					$("#navquiz").removeClass("disabled")
+				}
+			},
+			error: function (request, status, error) {
+				console.log("Error");
+				console.log(request)
+				console.log(status)
+				console.log(error)
+			}
+		})
+	</script>
 	{% block extra_head %}{% endblock %}
 
 	<title>Constellation Quiz</title>
@@ -60,7 +82,7 @@
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
 					<a class="nav-link" href="/learn/1">Learn</a>
-					<a class="nav-link" href="/quiz/hard">Quiz</a>
+					<a class="nav-link disabled" id="navquiz" href="/quiz/easy">Quiz</a>
 				</div>
 			</div>
 		</div>

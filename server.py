@@ -20,9 +20,19 @@ learn_pages = {
 learn_start = 0
 learn_end = 0
 
+@app.route('/disable_quiz/', methods=['POST'])
+def disable_quiz():
+    finished = 0
+    if learn_end != 0:
+        finished = 1
+    return jsonify(finished)
+
 @app.route('/')
 def homepage():
-    return render_template('homepage.html') 
+    finished = 0
+    if learn_end != 0:
+        finished = 1
+    return render_template('homepage.html', finished = finished)
 
 @app.route('/learn/<page>')
 def learn_page(page=None):
@@ -40,7 +50,7 @@ def save_learn(page=None):
         learn_start = json_data["time_entered"]
         print(learn_start)
     elif (page == "4"):
-        learn_end = json_data["time_left"]
+        learn_end += json_data["time_left"]
     click_times = json_data["click_times"]
 
     for constellation in click_times:
@@ -100,6 +110,10 @@ def quiz_finish_page():
         return redirect(url_for('quiz_easy_page'))
 
     return render_template('quiz_finish.html', score=score)
+
+@app.route('/quiz/start')
+def quiz_start_page():
+    return render_template('quiz_start.html')
 
 
 if __name__ == '__main__':
