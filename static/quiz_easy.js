@@ -1,21 +1,38 @@
-let constellations = shuffledConstellations;
-let currentIndex = 0;
-let score = 0;
-
+let constellations;
 
 $(document).ready(function () {
 
-    constellation = constellations[currentIndex]
-    console.log(constellation)
+    if (localStorage.getItem('quizState')) {
+
+        let savedState = JSON.parse(localStorage.getItem('quizState'));
+        constellations = savedState.constellations;
+        currentIndex = savedState.currentIndex;
+        score = savedState.score;
+
+        if (currentIndex >= 16) {
+
+            sendScoreAndFinish()
+
+        }
+
+    } else {
+
+        constellations = shuffledConstellations;
+        currentIndex = 0;
+        score = 0;
+        saveProgress();
+
+    }
 
     let nextButton = $("#next-btn");
     let optionButtons = $(".option");
 
-    displayQuestion(constellation);
+    displayQuestion();
+    updateProgressBar();
 
     optionButtons.on("click", function () {
 
-        checkAnswer(this, constellation);
+        checkAnswer(this);
 
     });
 
@@ -31,7 +48,7 @@ $(document).ready(function () {
             nextButton.prop("disabled", true);
 
             constellation = constellations[currentIndex];
-            displayQuestion(constellation);
+            displayQuestion();
 
         } else if (currentIndex == constellations.length - 1) {
 
@@ -39,11 +56,11 @@ $(document).ready(function () {
             nextButton.prop("disabled", true);
 
             constellation = constellations[currentIndex];
-            displayQuestion(constellation);
+            displayQuestion();
 
         } else {
 
-            window.location.href = "/quiz/finish";
+            sendScoreAndFinish()
 
         }
 
@@ -51,9 +68,21 @@ $(document).ready(function () {
 
 });
 
+function saveProgress() {
 
-function displayQuestion(constellation) {
+    localStorage.setItem('quizState', JSON.stringify({
 
+        constellations: constellations,
+        currentIndex: currentIndex,
+        score: score
+
+    }));
+
+}
+
+function displayQuestion() {
+
+    constellation = constellations[currentIndex]
     constellationOptions = constellation["options"];
     constellationName = constellation["name"];
 
@@ -76,11 +105,22 @@ function displayQuestion(constellation) {
       
 }
 
-function checkAnswer(selectedOption, constellation) {
+function checkAnswer(selectedOption) {
+
+    constellation = constellations[currentIndex];
+    constellationName = constellation["name"];
 
     disableOptions();
     next = $("#next-btn");
     next.prop("disabled", false);
+
+    imageURLLeft = "/static/learnphotos/" + constellationName.replace(/\s/g, '') + "2.webp"
+    imageURLRight = "/static/learnphotos/" + constellationName.replace(/\s/g, '') + ".jpeg"
+
+    const image = $("#image-container");
+    image.html(
+        `<img src="${imageURLRight}" alt="${constellationName}"><img src="${imageURLLeft}" alt="${constellationName}">`
+    );
 
     let selectedText = $(selectedOption).text();
     $("#next-btn").prop("disabled", false);
@@ -89,18 +129,19 @@ function checkAnswer(selectedOption, constellation) {
     if (selectedText === constellation["name"]) {
 
         score = score + 1;
-        $("#feedback-text").text("Correct!").css("color", "green");
+        $("#feedback-text").text("Correct! " + constellation["message"]).attr("class", "correct");
 
     } else {
 
-        $("#feedback-text").html(
-          `<span class="incorrect">Incorrect! The correct answer is: ${constellation.name}</span>`
-        );
+        $("#feedback-text").text("Incorrect! The correct answer is " + constellationName + ". " + constellation["message"]).attr("class", "incorrect");
 
     }
 
-    let scoreCard = $("#score");
-    scoreCard.text(`${score}/${currentIndex}`);
+    saveProgress();
+
+    updateProgressBar();
+
+    $("#score").text(`Score: ${score}/${currentIndex}`);
 
 }
 
@@ -129,3 +170,41 @@ function enableOptions() {
     }
 
 }
+
+function updateProgressBar() {
+
+    let rects = $(".progress-rect");
+
+    rects.removeClass("filled");
+
+    for (let i = 0; i < currentIndex; i++) {
+
+        $(rects[i]).addClass("filled");
+
+    }
+
+}
+
+function sendScoreAndFinish() {
+    fetch('/quiz/submit-score', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            score: score,
+        })
+    })
+    .then(response => {
+        if (response.ok) {
+            localStorage.removeItem('quizState');
+            window.location.href = '/quiz/finish'; // 👈 Redirect to the finish page
+        } else {
+            console.error('Failed to send score.');
+        }
+    })
+    .catch(error => {
+        console.error('Error sending score:', error);
+    });
+}
+

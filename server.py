@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, redirect, url_for
+from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 from data import constellations
 import random
 
@@ -7,6 +7,8 @@ learn1 = ["Cassiopeia", "Andromeda", "Aries", "Orion"]
 learn2 = ["Perseus", "Pisces", "Taurus", "Triangulum"]
 learn3 = ["Auriga", "Cancer", "Canis Minor", "Lacerta"]
 learn4 = ["Cepheus", "Aquila", "Cygnus", "Delphinus"]
+
+app.secret_key = '1234'
 
 learn_pages = {
     "1": learn1,
@@ -25,9 +27,19 @@ quiz_hard_progress = {
 learn_start = 0
 learn_end = 0
 
+@app.route('/disable_quiz/', methods=['POST'])
+def disable_quiz():
+    finished = 0
+    if learn_end != 0:
+        finished = 1
+    return jsonify(finished)
+
 @app.route('/')
 def homepage():
-    return render_template('homepage.html') 
+    finished = 0
+    if learn_end != 0:
+        finished = 1
+    return render_template('homepage.html', finished = finished)
 
 @app.route('/learn/<page>')
 def learn_page(page=None):
@@ -45,7 +57,7 @@ def save_learn(page=None):
         learn_start = json_data["time_entered"]
         print(learn_start)
     elif (page == "4"):
-        learn_end = json_data["time_left"]
+        learn_end += json_data["time_left"]
     click_times = json_data["click_times"]
 
     for constellation in click_times:
@@ -165,14 +177,38 @@ def quiz_easy_page():
         random.shuffle(options)
 
         _dict["options"] = options
+        _dict["message"] = constellations[name]["message"]
 
         shuffled_constellations.append(_dict)
 
     return render_template('quiz_easy.html', shuffled_constellations=shuffled_constellations)
 
+
+@app.route('/quiz/submit-score', methods=['POST'])
+def submit_score():
+    data = request.get_json()
+    score = data['score']
+
+    # Save the score temporarily into the Flask session
+    session['score'] = score
+
+    # Redirect to finish page
+    return redirect(url_for('quiz_finish_page'))
+
 @app.route('/quiz/finish')
-def quiz_finish_page():    
-    return render_template('quiz_finish.html')
+def quiz_finish_page():
+    score = session.get('score')
+    print(score)
+
+    if score is None:
+        # If somehow accessed /quiz/finish without a score
+        return redirect(url_for('quiz_easy_page'))
+
+    return render_template('quiz_finish.html', score=score)
+
+@app.route('/quiz/start')
+def quiz_start_page():
+    return render_template('quiz_start.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
