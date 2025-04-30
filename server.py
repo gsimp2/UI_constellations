@@ -17,6 +17,13 @@ learn_pages = {
     "4": learn4,
 }
 
+quiz_hard_progress = {
+    "reordered_constellations": [],
+    "current_index": 0,
+    "score": 0,
+    "answered_questions": 0,
+}
+
 learn_start = 0
 learn_end = 0
 
@@ -61,6 +68,94 @@ def save_learn(page=None):
 @app.route('/quiz/hard')
 def quiz_challenge_page():
     return render_template('quiz_hard.html', constellations=constellations)
+
+@app.route('/quiz/hard/init', methods=['POST'])
+def quiz_hard_init():
+    global quiz_hard_progress
+    
+    if len(quiz_hard_progress["reordered_constellations"]) == 0 or quiz_hard_progress["current_index"] >= len(quiz_hard_progress["reordered_constellations"]):
+        quiz_hard_progress = {
+        "reordered_constellations": [],
+        "current_index": 0,
+        "score": 0,
+        "answered_questions": 0
+        }
+        
+        constellation_names = list(constellations.keys())
+        random.shuffle(constellation_names)
+        quiz_hard_progress["reordered_constellations"]=constellation_names
+    
+    total = len(quiz_hard_progress["reordered_constellations"])
+    
+    current_index = quiz_hard_progress["current_index"]
+
+    current_name = quiz_hard_progress["reordered_constellations"][current_index]
+    return jsonify({
+        "constellation": constellations[current_name],
+        "name": current_name,
+        "current_index": current_index,
+        "score": quiz_hard_progress["score"],
+        "total": total
+    })
+
+
+@app.route('/quiz/hard/submit', methods=['POST'])
+def quiz_hard_submit():
+    global quiz_hard_progress
+    
+    json_data = request.get_json()
+    name = json_data["name"]
+    user_answer = json_data["answer"]
+    is_correct = user_answer.lower() == name.lower()
+
+    quiz_hard_progress["answered_questions"] += 1
+    
+    if is_correct:
+        quiz_hard_progress["score"] += 1
+    
+    score = quiz_hard_progress["score"]
+    total = quiz_hard_progress["answered_questions"]
+    
+    quiz_hard_progress["current_index"] += 1
+    
+    if quiz_hard_progress["current_index"] >= len(quiz_hard_progress["reordered_constellations"]):
+        return jsonify({
+            "complete": True,
+            "is_correct": is_correct,
+            "correct_answer": name,
+            "score": score,
+            "total": total
+        })
+    
+    next_index = quiz_hard_progress["current_index"]
+    next_constellation = quiz_hard_progress["reordered_constellations"][next_index]
+    
+    return jsonify({
+        "complete": False,
+        "is_correct": is_correct,
+        "correct_answer": name,
+        "score": score,
+        "total": total,
+        "next": {
+            "constellation": constellations[next_constellation],
+            "name": next_constellation,
+            "current_index": next_index,
+            "total_constellations": len(quiz_hard_progress["reordered_constellations"])
+        }
+    })
+
+@app.route('/quiz/hard/reset', methods=['POST'])
+def quiz_hard_reset():
+    global quiz_hard_progress
+    
+    quiz_hard_progress = {
+        "reordered_constellations": [],
+        "current_index": 0,
+        "score": 0,
+        "answered_questions": 0
+    }
+    
+    return jsonify({"reset": True})
 
 @app.route('/quiz/easy')
 def quiz_easy_page():
@@ -114,7 +209,6 @@ def quiz_finish_page():
 @app.route('/quiz/start')
 def quiz_start_page():
     return render_template('quiz_start.html')
-
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

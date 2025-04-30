@@ -50,3 +50,21 @@ body {
   background-color: #d3d3d3;
   color: black;
 }
+
+#progress-container {
+    display: flex;
+    gap: 5px; 
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.progress-rect {
+    flex: 1;
+    height: 10px;
+    background-color: #eee;
+    transition: background-color 0.3s;
+}
+
+.progress-rect.filled {
+    background-color: #4c7daf;
+}
