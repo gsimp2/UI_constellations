@@ -95,7 +95,8 @@ def quiz_hard_init():
         "name": current_name,
         "current_index": current_index,
         "score": quiz_hard_progress["score"],
-        "total": total
+        "total": total,
+        "all_constellation_names": quiz_hard_progress["reordered_constellations"]
     })
 
 
