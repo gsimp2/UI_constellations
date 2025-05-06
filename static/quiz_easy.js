@@ -37,11 +37,9 @@ $(document).ready(function () {
     optionButtons.on("click", function () {
         selectedOption = this;
 
-        // Highlight the selected option
         $(".option").removeClass("selected");
         $(this).addClass("selected");
 
-        // Enable Submit button
         submitButton.prop("disabled", false);
     });
 
