@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $('#score').text("You got " + score + " out of 16 questions right");
+    $('#score').text("You got " + score + " out of 8 questions right");
 
     $('#learn').click(function () {
       window.location.href = '/learn/1';

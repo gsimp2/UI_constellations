@@ -1,4 +1,5 @@
 let constellations;
+let selectedOption = null;
 
 $(document).ready(function () {
 
@@ -8,181 +9,143 @@ $(document).ready(function () {
         constellations = savedState.constellations;
         currentIndex = savedState.currentIndex;
         score = savedState.score;
+        numFinishes = savedState.numFinishes;
 
-        if (currentIndex >= 16) {
-
-            sendScoreAndFinish()
-
+        if (currentIndex >= 8) {
+            sendScoreAndFinish();
         }
 
     } else {
 
-        constellations = shuffledConstellations;
+        constellations = shuffledConstellations.slice(0, 8);
         currentIndex = 0;
         score = 0;
+        numFinishes = 0;
         saveProgress();
 
     }
 
     let nextButton = $("#next-btn");
     let optionButtons = $(".option");
+    let submitButton = $("#submit-btn");
+
+    nextButton.css("display", "none");
 
     displayQuestion();
     updateProgressBar();
 
     optionButtons.on("click", function () {
+        selectedOption = this;
 
-        checkAnswer(this);
+        // Highlight the selected option
+        $(".option").removeClass("selected");
+        $(this).addClass("selected");
 
+        // Enable Submit button
+        submitButton.prop("disabled", false);
+    });
+
+    submitButton.on("click", function () {
+        if (selectedOption !== null) {
+            checkAnswer(selectedOption);
+            selectedOption = null;
+            submitButton.prop("disabled", true);
+            submitButton.css("display", "none");
+        }
     });
 
     nextButton.on("click", function () {
-
-        feedback = $("#feedback-text")
-        nextButton = $("#next-btn");
-
-        feedback.empty();
+        $("#feedback-text").empty();
+        $("#next-btn").css("display", "none");
+        $("#submit-btn").css("display", "inline-block");
+        $("#next-btn").prop("disabled", true);
 
         if (currentIndex < constellations.length - 1) {
-
-            nextButton.prop("disabled", true);
-
-            constellation = constellations[currentIndex];
             displayQuestion();
-
-        } else if (currentIndex == constellations.length - 1) {
-
-            nextButton.text("Finish");
-            nextButton.prop("disabled", true);
-
-            constellation = constellations[currentIndex];
+        } else if (currentIndex === constellations.length - 1) {
+            $("#next-btn").text("Finish");
             displayQuestion();
-
         } else {
-
-            sendScoreAndFinish()
-
+            sendScoreAndFinish();
         }
-
     });
 
 });
 
 function saveProgress() {
-
     localStorage.setItem('quizState', JSON.stringify({
-
         constellations: constellations,
         currentIndex: currentIndex,
         score: score
-
     }));
-
 }
 
 function displayQuestion() {
-
-    constellation = constellations[currentIndex]
-    constellationOptions = constellation["options"];
-    constellationName = constellation["name"];
+    let constellation = constellations[currentIndex];
+    let constellationOptions = constellation["options"];
+    let constellationName = constellation["name"];
 
     enableOptions();
+    $("#submit-btn").prop("disabled", true);
+    $(".option").removeClass("selected");
 
-    imageURL = "/static/learnphotos/" + constellationName.replace(/\s/g, '') + "2.webp"
-
-    const image = $("#image-container")
-    image.html(
-        `<img src="${imageURL}" alt="${constellationName}" class="img-fluid">`
-    );
+    let imageURL = "/static/learnphotos/" + constellationName.replace(/\s/g, '') + "2.webp";
+    $("#image-container").html(`<img src="${imageURL}" alt="${constellationName}" class="img-fluid">`);
 
     for (let i = 0; i < constellationOptions.length; i++) {
-
-        option = constellationOptions[i]
-        optionButton = $(`#${i}`)
-        optionButton.text(option)
-
+        let option = constellationOptions[i];
+        let optionButton = $(`#${i}`);
+        optionButton.text(option);
     }
-      
 }
 
 function checkAnswer(selectedOption) {
-
-    constellation = constellations[currentIndex];
-    constellationName = constellation["name"];
-
+    let constellation = constellations[currentIndex];
+    let constellationName = constellation["name"];
     disableOptions();
-    next = $("#next-btn");
-    next.prop("disabled", false);
+    $("#next-btn").css("display", "inline-block");
+    $("#next-btn").prop("disabled", false);
 
-    imageURLLeft = "/static/learnphotos/" + constellationName.replace(/\s/g, '') + "2.webp"
-    imageURLRight = "/static/learnphotos/" + constellationName.replace(/\s/g, '') + ".jpeg"
+    let imageURLLeft = "/static/learnphotos/" + constellationName.replace(/\s/g, '') + "2.webp";
+    let imageURLRight = "/static/learnphotos/" + constellationName.replace(/\s/g, '') + ".jpeg";
 
-    const image = $("#image-container");
-    image.html(
+    $("#image-container").html(
         `<img src="${imageURLRight}" alt="${constellationName}"><img src="${imageURLLeft}" alt="${constellationName}">`
     );
 
     let selectedText = $(selectedOption).text();
-    $("#next-btn").prop("disabled", false);
-    currentIndex = currentIndex + 1;
+    currentIndex += 1;
 
     if (selectedText === constellation["name"]) {
-
-        score = score + 1;
+        score += 1;
         $("#feedback-text").text("Correct! " + constellation["message"]).attr("class", "correct");
-
     } else {
-
         $("#feedback-text").text("Incorrect! The correct answer is " + constellationName + ". " + constellation["message"]).attr("class", "incorrect");
-
     }
 
     saveProgress();
-
     updateProgressBar();
-
     $("#score").text(`Score: ${score}/${currentIndex}`);
-
 }
 
 function disableOptions() {
-
-    options = [0, 1, 2, 3];
-
-    for (let i = 0; i < options.length; i++) {
-
-        optionButton = $(`#${i}`);
-        optionButton.prop("disabled", true);
-
-    }
-
+    [0, 1, 2, 3].forEach(i => {
+        $(`#${i}`).prop("disabled", true);
+    });
 }
 
 function enableOptions() {
-
-    options = [0, 1, 2, 3];
-
-    for (let i = 0; i < options.length; i++) {
-
-        optionButton = $(`#${i}`);
-        optionButton.prop("disabled", false);
-
-    }
-
+    [0, 1, 2, 3].forEach(i => {
+        $(`#${i}`).prop("disabled", false);
+    });
 }
 
 function updateProgressBar() {
-
     let rects = $(".progress-rect");
-
     rects.removeClass("filled");
-
     for (let i = 0; i < currentIndex; i++) {
-
         $(rects[i]).addClass("filled");
-
     }
-
 }
 
 function sendScoreAndFinish() {
@@ -191,14 +154,22 @@ function sendScoreAndFinish() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            score: score,
-        })
+        body: JSON.stringify({ score: score })
     })
     .then(response => {
         if (response.ok) {
-            localStorage.removeItem('quizState');
-            window.location.href = '/quiz/finish'; // 👈 Redirect to the finish page
+            if (numFinishes) {
+                localStorage.removeItem('quizState');
+            } else {
+                numFinishes += 1;
+                localStorage.setItem('quizState', JSON.stringify({
+                    constellations: shuffledConstellations.slice(8, 16),
+                    currentIndex: 0,
+                    score: 0,
+                    numFinishes: 1
+                }));
+            }
+            window.location.href = '/quiz/finish';
         } else {
             console.error('Failed to send score.');
         }
@@ -207,4 +178,3 @@ function sendScoreAndFinish() {
         console.error('Error sending score:', error);
     });
 }
-

@@ -5,6 +5,10 @@
     margin-bottom: 5px;
 }
 
+.option.selected {
+    background-color: #4c7daf;
+}
+
 .progress-rect {
     flex: 1;
     height: 10px;
