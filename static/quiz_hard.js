@@ -1,6 +1,7 @@
 let currentConstellation = null;
 let currentName = null;
 let hasAnswered = false;
+let all_constellation_names = null;
 
 $(document).ready(function () {
   initQuiz();
@@ -12,6 +13,7 @@ $(document).ready(function () {
     }
   });
 
+  $("#hint-btn").on("click", displayHint);
   $("#submit-btn").on("click", checkAnswer);
   $("#next-btn").on("click", nextQuestion);
 });
@@ -30,6 +32,7 @@ function initQuiz() {
     success: function (response) {
       currentConstellation = response.constellation;
       currentName = response.name;
+      all_constellation_names = response.all_constellation_names;
       $("#score").text(`${response.score}/${response.current_index}`);
       updateProgressBar(response.current_index);
       displayQuestion();
@@ -56,6 +59,7 @@ function displayQuestion() {
   $("#learn-text").empty();
 
   $("#answer-input").val("").prop("disabled", false);
+  $("#hint-btn").prop("disabled", false);
   $("#submit-btn").prop("disabled", false);
   $("#next-btn").prop("disabled", true);
 
@@ -64,6 +68,23 @@ function displayQuestion() {
   );
 
   $("#answer-input").focus();
+}
+
+function displayHint() {
+  const hint_indices = new Set();
+  hint_indices.add(currentName);
+  while (hint_indices.size < 4) {
+    const hint_candidate_index = Math.floor(
+      Math.random() * all_constellation_names.length
+    );
+    hint_indices.add(all_constellation_names[hint_candidate_index]);
+  }
+  const hints = Array.from(hint_indices).sort();
+  $("#feedback-text").html(
+    `<span>Hints: ${hints[0]}, ${hints[1]}, ${hints[2]},
+    ${hints[3]}</span>`
+  );
+  $("#hint-btn").prop("disabled", true);
 }
 
 function checkAnswer() {
