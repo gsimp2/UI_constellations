@@ -35,11 +35,14 @@ function save_learn_metadata() {
 		data: JSON.stringify(data_to_save),
 		success: function (result) {
 			console.log(result)
-			if (page != "4") {
+			if ((page == "1") || (page == "3")) {
 				window.location.href = '/learn/' + (parseInt(page) + 1).toString();
 			}
+			else if (page == "2") {
+				window.location.href = '/quiz/start/1';
+			}
 			else {
-				window.location.href = '/quiz/start';
+				window.location.href = '/quiz/start/2';
 			}
 		},
 		error: function (request, status, error) {

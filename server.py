@@ -158,27 +158,30 @@ def quiz_hard_reset():
     
     return jsonify({"reset": True})
 
-@app.route('/quiz/easy')
-def quiz_easy_page():
-    names = list(constellations.keys())
-    # random.shuffle(names)
+@app.route('/quiz/easy/<round>')
+def quiz_easy_page(round=None):
+    if (round == "1"):
+        names = learn1 + learn2
+    else:
+        names = learn2 + learn3
+    print(names)
+    random.shuffle(names)
 
     shuffled_constellations = []
-    def newListRemove(element, list): return filter(lambda x: x != element, list)
 
     for name in names:
 
         _dict = {}
         _dict["name"] = name
-        
-        list_15 = newListRemove(name, names)
-        options = random.sample(set(list_15), 3)
+        _dict["message"] = constellations[name]["message"]
+                
+        other_names = [n for n in names if n != name]
+        options = random.sample(other_names, 3)
         
         options.append(name)
         random.shuffle(options)
 
         _dict["options"] = options
-        _dict["message"] = constellations[name]["message"]
 
         shuffled_constellations.append(_dict)
 
@@ -196,8 +199,8 @@ def submit_score():
     # Redirect to finish page
     return redirect(url_for('quiz_finish_page'))
 
-@app.route('/quiz/finish')
-def quiz_finish_page():
+@app.route('/quiz/finish/<round>')
+def quiz_finish_page(round=None):
     score = session.get('score')
     print(score)
 
@@ -205,11 +208,11 @@ def quiz_finish_page():
         # If somehow accessed /quiz/finish without a score
         return redirect(url_for('quiz_easy_page'))
 
-    return render_template('quiz_finish.html', score=score)
+    return render_template('quiz_finish.html', score=score, round=round)
 
-@app.route('/quiz/start')
-def quiz_start_page():
-    return render_template('quiz_start.html')
+@app.route('/quiz/start/<round>')
+def quiz_start_page(round=None):
+    return render_template('quiz_start.html', round=round)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

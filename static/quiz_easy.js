@@ -17,7 +17,7 @@ $(document).ready(function () {
 
     } else {
 
-        constellations = shuffledConstellations.slice(0, 8);
+        constellations = shuffledConstellations;
         currentIndex = 0;
         score = 0;
         numFinishes = 0;
@@ -154,24 +154,24 @@ function sendScoreAndFinish() {
         },
         body: JSON.stringify({ score: score })
     })
-    .then(response => {
-        if (response.ok) {
-            if (numFinishes) {
-                localStorage.removeItem('quizState');
+        .then(response => {
+            if (response.ok) {
+                if (numFinishes) {
+                    localStorage.removeItem('quizState');
+                } else {
+                    localStorage.setItem('quizState', JSON.stringify({
+                        constellations: shuffledConstellations,
+                        currentIndex: 0,
+                        score: 0,
+                        numFinishes: 1
+                    }));
+                }
+                window.location.href = '/quiz/finish';
             } else {
-                localStorage.setItem('quizState', JSON.stringify({
-                    constellations: shuffledConstellations.slice(8, 16),
-                    currentIndex: 0,
-                    score: 0,
-                    numFinishes: 1
-                }));
+                console.error('Failed to send score.');
             }
-            window.location.href = '/quiz/finish';
-        } else {
-            console.error('Failed to send score.');
-        }
-    })
-    .catch(error => {
-        console.error('Error sending score:', error);
-    });
+        })
+        .catch(error => {
+            console.error('Error sending score:', error);
+        });
 }

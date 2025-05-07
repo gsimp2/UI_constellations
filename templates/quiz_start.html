@@ -2,14 +2,23 @@
 
 {% block extra_head %}
 <link rel="stylesheet" href="{{url_for('static', filename='homepage.css')}}">
+<script type="text/javascript">
+  let round = JSON.parse('{{ round| tojson | safe }}');
+</script>
 <script>
   $(document).ready(function () {
 
     $('#learnbtn').click(function () {
-      window.location.href = '/learn/1';
+      if (round == "1")
+        window.location.href = '/learn/1';
+      else
+        window.location.href = '/learn/3';
     });
     $('#quizbtn').click(function () {
-      window.location.href = '/quiz/easy';
+      if (round == "1")
+        window.location.href = '/quiz/easy/1';
+      else
+        window.location.href = '/quiz/easy/2';
     })
   })
 </script>
@@ -20,8 +29,8 @@
   <p class="welcome">
     You've finished learning:
   </p>
-  <button class="btn quiz bottomposition" type="button" id="learnbtn">Learn again</button>
-  <button class="btn learn topposition" type="button" id="quizbtn">Take the quiz</button>
+  <button class="btn quiz bottomposition" type="button" id="learnbtn">Review</button>
+  <button class="btn learn topposition" type="button" id="quizbtn">Test your knowledge</button>
 </div>
 
 {% endblock %}

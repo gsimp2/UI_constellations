@@ -3,7 +3,8 @@
 {% block extra_head %}
 <link rel="stylesheet" href="{{url_for('static', filename='quiz_finish.css')}}">
 <script type="text/javascript">
-	let score = JSON.parse('{{ score| tojson | safe }}');
+  let score = JSON.parse('{{ score| tojson | safe }}');
+  let round = JSON.parse('{{ round| tojson | safe }}');
 </script>
 <script src="{{ url_for('static', filename='quiz_finish.js') }}"></script>
 {% endblock %}
@@ -16,9 +17,9 @@
     </p>
     <p id="score">
     </p>
-    <button class="btn learn" type="button" id="easy">Review and retake quiz</button>
-    <button class="btn quiz" type="button" id="learn">Continue learning</button>
-    <button class="btn quiz" type="button" id="hard">Challenge yourself</button>
+    <div id="buttons">
+      <button class="btn learn" type="button" id="easy">Review and retake quiz</button>
+    </div>
   </div>
   <br>
 </div>
