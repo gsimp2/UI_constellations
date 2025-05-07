@@ -159,7 +159,6 @@ function sendScoreAndFinish() {
             if (numFinishes) {
                 localStorage.removeItem('quizState');
             } else {
-                numFinishes += 1;
                 localStorage.setItem('quizState', JSON.stringify({
                     constellations: shuffledConstellations.slice(8, 16),
                     currentIndex: 0,
