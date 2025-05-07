@@ -163,7 +163,7 @@ def quiz_easy_page(round=None):
     if (round == "1"):
         names = learn1 + learn2
     else:
-        names = learn2 + learn3
+        names = learn3 + learn4
     print(names)
     random.shuffle(names)
 
