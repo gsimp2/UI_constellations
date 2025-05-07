@@ -161,7 +161,7 @@ def quiz_hard_reset():
 @app.route('/quiz/easy')
 def quiz_easy_page():
     names = list(constellations.keys())
-    random.shuffle(names)
+    # random.shuffle(names)
 
     shuffled_constellations = []
     def newListRemove(element, list): return filter(lambda x: x != element, list)
