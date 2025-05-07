@@ -185,19 +185,21 @@ def quiz_easy_page(round=None):
 
         shuffled_constellations.append(_dict)
 
-    return render_template('quiz_easy.html', shuffled_constellations=shuffled_constellations)
+    return render_template('quiz_easy.html', shuffled_constellations=shuffled_constellations, round=round)
 
 
 @app.route('/quiz/submit-score', methods=['POST'])
 def submit_score():
     data = request.get_json()
     score = data['score']
+    round = data['round']
+    
 
     # Save the score temporarily into the Flask session
     session['score'] = score
 
     # Redirect to finish page
-    return redirect(url_for('quiz_finish_page'))
+    return redirect(url_for('quiz_finish_page', round=round))
 
 @app.route('/quiz/finish/<round>')
 def quiz_finish_page(round=None):

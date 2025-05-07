@@ -4,6 +4,7 @@
 <link href="{{ url_for('static', filename='quiz_easy.css') }}" rel="stylesheet">
 <script type="text/javascript">
 	let shuffledConstellations = JSON.parse('{{ shuffled_constellations | tojson | safe }}');
+	let round = JSON.parse('{{ round | tojson | safe }}');
 </script>
 <script src="{{ url_for('static', filename='quiz_easy.js') }}"></script>
 {% endblock %}

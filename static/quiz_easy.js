@@ -3,13 +3,15 @@ let selectedOption = null;
 
 $(document).ready(function () {
 
+    // localStorage.removeItem('quizState');
+
     if (localStorage.getItem('quizState')) {
 
         let savedState = JSON.parse(localStorage.getItem('quizState'));
         constellations = savedState.constellations;
         currentIndex = savedState.currentIndex;
         score = savedState.score;
-        numFinishes = savedState.numFinishes;
+        // numFinishes = savedState.numFinishes;
 
         if (currentIndex >= 8) {
             sendScoreAndFinish();
@@ -20,7 +22,7 @@ $(document).ready(function () {
         constellations = shuffledConstellations;
         currentIndex = 0;
         score = 0;
-        numFinishes = 0;
+        // numFinishes = 0;
         saveProgress();
 
     }
@@ -152,21 +154,22 @@ function sendScoreAndFinish() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ score: score })
+        body: JSON.stringify({ score: score, round: round })
     })
         .then(response => {
             if (response.ok) {
-                if (numFinishes) {
-                    localStorage.removeItem('quizState');
-                } else {
-                    localStorage.setItem('quizState', JSON.stringify({
-                        constellations: shuffledConstellations,
-                        currentIndex: 0,
-                        score: 0,
-                        numFinishes: 1
-                    }));
-                }
-                window.location.href = '/quiz/finish';
+                localStorage.removeItem('quizState');
+                // if (numFinishes) {
+                //     localStorage.removeItem('quizState');
+                // } else {
+                //     localStorage.setItem('quizState', JSON.stringify({
+                //         constellations: shuffledConstellations,
+                //         currentIndex: 0,
+                //         score: 0,
+                //         numFinishes: 1
+                //     }));
+                // }
+                window.location.href = '/quiz/finish/' + round;
             } else {
                 console.error('Failed to send score.');
             }
