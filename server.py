@@ -26,20 +26,18 @@ quiz_hard_progress = {
 
 learn_start = 0
 learn_end = 0
+finished_learn = False
 
 @app.route('/disable_quiz/', methods=['POST'])
 def disable_quiz():
-    finished = 0
-    if learn_end != 0:
-        finished = 1
+    global finished_learn
+    finished = finished_learn
     return jsonify(finished)
 
 @app.route('/')
 def homepage():
-    finished = 0
-    if learn_end != 0:
-        finished = 1
-    return render_template('homepage.html', finished = finished)
+    global finished_learn
+    return render_template('homepage.html', finished = finished_learn)
 
 @app.route('/learn/<page>')
 def learn_page(page=None):
@@ -203,6 +201,9 @@ def submit_score():
 
 @app.route('/quiz/finish/<round>')
 def quiz_finish_page(round=None):
+    global finished_learn
+    if (round == "2"):
+        finished_learn = True
     score = session.get('score')
     print(score)
 

@@ -6,7 +6,7 @@
   let finished = {{ finished| tojson  }}
   $(document).ready(function () {
     console.log(finished)
-    if (finished == "1") {
+    if (finished == true) {
       console.log("switching classes")
       $('#learnbtn').removeClass("learn")
       $('#learnbtn').addClass("quiz")
@@ -17,7 +17,7 @@
       window.location.href = '/learn/1';
     });
     $('#quizbtn').click(function () {
-      if (finished == "1") {
+      if (finished == true) {
         window.location.href = '/quiz/hard';
       }
     })

@@ -49,25 +49,27 @@
 		}
 	</style>
 	<script>
-		$.ajax({
-			type: "POST",
-			url: "/disable_quiz/",
-			dataType: "json",
-			contentType: "application/json; charset=utf-8",
-			data: "",
-			success: function (finished) {
-				console.log(finished)
-				if (finished == "1") {
-					console.log("undisabling")
-					$("#navquiz").removeClass("disabled")
+		$(document).ready(function () {
+			$.ajax({
+				type: "POST",
+				url: "/disable_quiz/",
+				dataType: "json",
+				contentType: "application/json; charset=utf-8",
+				data: "",
+				success: function (finished) {
+					console.log(finished)
+					if (finished == true) {
+						console.log("undisabling")
+						$("#navquiz").removeClass("disabled")
+					}
+				},
+				error: function (request, status, error) {
+					console.log("Error");
+					console.log(request)
+					console.log(status)
+					console.log(error)
 				}
-			},
-			error: function (request, status, error) {
-				console.log("Error");
-				console.log(request)
-				console.log(status)
-				console.log(error)
-			}
+			})
 		})
 	</script>
 	{% block extra_head %}{% endblock %}
